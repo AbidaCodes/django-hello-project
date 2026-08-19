@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Registration{% endblock title %}
+
+{% block body %}
+
+<div class="container my-5">
+
+    <h1 class="mb-4">Edit Registration</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text"
+                   class="form-control"
+                   id="name"
+                   name="name"
+                   value="{{ user.name }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email"
+                   class="form-control"
+                   id="email"
+                   name="email"
+                   value="{{ user.email }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="age" class="form-label">Age</label>
+            <input type="number"
+                    class="form-control"
+                    id="age"
+                    name="age"
+                    value="{{ user.age }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="city" class="form-label">City</label>
+            <input type="text"
+                   class="form-control"
+                    id="city"
+                    name="city"
+                    value="{{ user.city }}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Current Image</label>
+            <br>
+
+            {% if user.image %}
+                <img src="{{ user.image.url }}"
+                     style="height: 150px; width: 150px; object-fit: cover;"
+                     class="rounded mb-3"
+                     alt="Current Image">
+            {% else %}
+                <p>No image uploaded.</p>
+            {% endif %}
+        </div>
+
+        <div class="mb-3">
+            <label for="image" class="form-label">Change Image</label>
+            <input type="file"
+                   class="form-control"
+                   id="image"
+                   name="image">
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Save Changes
+        </button>
+
+        <a href="/" class="btn btn-secondary">
+            Cancel
+        </a>
+
+    </form>
+
+</div>
+
+{% endblock body %}
